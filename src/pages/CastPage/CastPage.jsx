@@ -1,9 +1,9 @@
 import { fetchMovieCast } from 'services/moviesApi';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 
-export const CastPage = () => {
+const CastPage = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
 
@@ -13,7 +13,7 @@ export const CastPage = () => {
 
   return (
     <>
-      {movie && (
+      {movie ? (
         <>
           <ul>
             {movie.cast.map(({ id, profile_path, name, character }) => (
@@ -30,9 +30,13 @@ export const CastPage = () => {
               </li>
             ))}
           </ul>
-          <Outlet />
+          <Suspense fallback={<div>Loading subpage...</div>}>
+            <Outlet />
+          </Suspense>
         </>
-      )}
+      ) : <p>We don`t iformation about cast of this movie.</p>}
     </>
   );
 };
+
+export default CastPage;

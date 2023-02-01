@@ -1,24 +1,23 @@
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMovieByName } from '../../services/moviesApi';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useState } from 'react';
 import { StyledLink } from 'pages/HomePage.styled';
 import { Btn, Input } from './MoviesPage.styled';
 
-
-export const MoviesPage = () => {
+const MoviesPage = () => {
   const [moviesSearchByWord, setMoviesSearchByWord] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const movieName = searchParams.get('movieName');
+  const location = useLocation()
 
-    useEffect(() => {
+  useEffect(() => {
     if (movieName !== '' && movieName !== null)
-    fetchMovieByName(movieName).then(data => {
+      fetchMovieByName(movieName).then(data => {
         // console.log(data);
         setMoviesSearchByWord(data);
       });
   }, [movieName]);
-
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -36,12 +35,15 @@ export const MoviesPage = () => {
       <ul>
         {moviesSearchByWord.map(({ title, id }) => (
           <li key={id}>
-            <StyledLink to={`/movies/${id}`}>{title}</StyledLink>
+            <StyledLink to={`/movies/${id}`} state={{from: location}}>{title}</StyledLink>
           </li>
         ))}
       </ul>
-      <Outlet />
+      <Suspense fallback={<div>Loading subpage...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
 
+export default MoviesPage;

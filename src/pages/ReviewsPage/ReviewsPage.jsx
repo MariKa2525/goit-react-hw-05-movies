@@ -1,10 +1,10 @@
 import { fetchMovieReviews } from 'services/moviesApi';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { Author } from './ReviewsPage.styled';
 
-export const ReviewsPage = () => {
+const ReviewsPage = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
 
@@ -14,7 +14,7 @@ export const ReviewsPage = () => {
 
   return (
     <>
-      {movie && (
+      {movie ? (
         <>
           <ul>
             {movie.results.map(({ id, author, content }) => (
@@ -24,9 +24,13 @@ export const ReviewsPage = () => {
               </li>
             ))}
           </ul>
-          <Outlet />
+          <Suspense fallback={<div>Loading subpage...</div>}>
+            <Outlet />
+          </Suspense>
         </>
-      )}
+      ) : <p>We don`t have any reviews for this movie.</p>}
     </>
   );
 };
+
+export default ReviewsPage;
