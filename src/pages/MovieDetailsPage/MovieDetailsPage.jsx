@@ -10,7 +10,6 @@ const MovieDetailsPage = () => {
   const movie = useFetchMovie();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(movie);
   return (
     <Container>
       <div>
