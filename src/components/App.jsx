@@ -1,39 +1,29 @@
 import { lazy } from 'react';
-// import { CastPage } from 'pages/CastPage/CastPage';
-// import { HomePage } from 'pages/HomePage';
-// import { MovieDetailsPage } from 'pages/MovieDetailsPage/MovieDetailsPage';
-// import { MoviesPage } from 'pages/MoviesPage/MoviesPage';
-// import { ReviewsPage } from 'pages/ReviewsPage/ReviewsPage';
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
-import { Container } from "./App.styled";
+import { Container } from './App.styled';
 
-const HomePage = lazy(() => import("../pages/HomePage"));
-const MoviesPage = lazy(() => import("../pages/MoviesPage/MoviesPage"));
-const MovieDetailsPage = lazy(() => import("../pages/MovieDetailsPage/MovieDetailsPage"));
-const CastPage = lazy(() => import("../pages/CastPage/CastPage"));
-const ReviewsPage = lazy(() => import("../pages/ReviewsPage/ReviewsPage"));
+const HomePage = lazy(() => import('../pages/HomePage'));
+const MoviesPage = lazy(() => import('../pages/MoviesPage/MoviesPage'));
+const MovieDetailsPage = lazy(() =>
+  import('../pages/MovieDetailsPage/MovieDetailsPage')
+);
+const CastPage = lazy(() => import('../pages/CastPage/CastPage'));
+const ReviewsPage = lazy(() => import('../pages/ReviewsPage/ReviewsPage'));
 
 export const App = () => {
   return (
     <Container>
       <Routes>
-      <Route path="/" element={<Layout />}>
-        
-        <Route index element={<HomePage />} />
-        <Route path="movies" element={<MoviesPage />}/>
-        <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-        <Route path='cast' element={<CastPage />}/>
-        <Route path='reviews' element={<ReviewsPage />}/>
-
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<CastPage />} />
+            <Route path="reviews" element={<ReviewsPage />} />
+          </Route>
         </Route>
-        
-      </Route>
-    </Routes>
-
-      
+      </Routes>
     </Container>
-    
-
   );
 };

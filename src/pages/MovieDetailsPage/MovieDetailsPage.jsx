@@ -10,9 +10,8 @@ const MovieDetailsPage = () => {
   const movie = useFetchMovie();
   const navigate = useNavigate();
   const location = useLocation();
-
+  console.log(movie);
   return (
-    // console.log(movie.genres[0.name]));
     <Container>
       <div>
         <Button onClick={() => navigate(location?.state?.from ?? '/')}>
@@ -30,7 +29,7 @@ const MovieDetailsPage = () => {
             />
             <Wrap>
               <h2>{movie.title}</h2>
-              <p>User Score: {movie.vote_average}</p>
+              <p>User Score: {Math.round(movie.popularity) + '%'}</p>
               <h3>Overview</h3>
               <p>{movie.overview}</p>
               <h3>Genres</h3>
