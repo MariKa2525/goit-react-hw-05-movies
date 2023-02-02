@@ -2,21 +2,16 @@ import { fetchMovieCast } from 'services/moviesApi';
 import { Suspense, useEffect } from 'react';
 import { useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
+import noFoto from '../../image/noFoto.jpg';
+import { Image } from './CastPage.styled';
 
 const CastPage = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
-  // console.log(movie.cast.length)
 
   useEffect(() => {
     fetchMovieCast(movieId).then(setMovie);
   }, [movieId]);
-
-  // return (
-  //   <>
-  //    {movie !== null && movie.cast.length > 0 ? (<p>'good'</p>) : (<p>'We don`t have iformation about cast of this movie.'</p>)}
-  //   </>
-  // )
 
   return (
     <>
@@ -25,13 +20,16 @@ const CastPage = () => {
           <ul>
             {movie.cast.map(({ id, profile_path, name, character }) => (
               <li key={id}>
-                {profile_path && (
-                  <img
-                    src={`https://image.tmdb.org/t/p/w300${profile_path} `}
-                    alt={name}
-                    width="150"
-                  />
-                )}
+                <Image
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w300${profile_path}`
+                      : noFoto
+                  }
+                  alt={name}
+                  width="150"
+                />
+
                 <p>{name}</p>
                 <p>Character: {character}</p>
               </li>
