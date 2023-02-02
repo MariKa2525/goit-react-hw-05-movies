@@ -6,14 +6,21 @@ import { Outlet, useParams } from 'react-router-dom';
 const CastPage = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
+  // console.log(movie.cast.length)
 
   useEffect(() => {
     fetchMovieCast(movieId).then(setMovie);
   }, [movieId]);
 
+  // return (
+  //   <>
+  //    {movie !== null && movie.cast.length > 0 ? (<p>'good'</p>) : (<p>'We don`t have iformation about cast of this movie.'</p>)}
+  //   </>
+  // )
+
   return (
     <>
-      {movie ? (
+      {movie !== null && movie.cast.length > 0 ? (
         <>
           <ul>
             {movie.cast.map(({ id, profile_path, name, character }) => (
@@ -34,7 +41,9 @@ const CastPage = () => {
             <Outlet />
           </Suspense>
         </>
-      ) : <p>We don`t iformation about cast of this movie.</p>}
+      ) : (
+        <p>We don`t have iformation about cast of this movie.</p>
+      )}
     </>
   );
 };

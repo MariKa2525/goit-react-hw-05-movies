@@ -14,7 +14,7 @@ const ReviewsPage = () => {
 
   return (
     <>
-      {movie ? (
+      {movie !== null && movie.results.length > 0 ? (
         <>
           <ul>
             {movie.results.map(({ id, author, content }) => (
@@ -28,7 +28,9 @@ const ReviewsPage = () => {
             <Outlet />
           </Suspense>
         </>
-      ) : <p>We don`t have any reviews for this movie.</p>}
+      ) : (
+        <p>We don`t have any reviews for this movie.</p>
+      )}
     </>
   );
 };
