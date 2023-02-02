@@ -11,10 +11,6 @@ const MovieDetailsPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  if (!movie) {
-    return null;
-  }
-
   return (
     <Container>
       <div>
