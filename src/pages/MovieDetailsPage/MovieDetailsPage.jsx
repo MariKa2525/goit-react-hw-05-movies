@@ -1,8 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { useFetchMovie } from '../../hooks/useFetchMovie/useFetchMovie';
 import { useNavigate } from 'react-router-dom';
-import { Container } from 'components/App.styled';
-import { Button, Card, Div, Wrap } from './MovieDetails.styled';
+import { Button, Card, ContainerMovie, Div, Wrap } from './MovieDetails.styled';
 import { StyledLink } from 'pages/HomePage.styled';
 import { Suspense } from 'react';
 
@@ -12,7 +11,7 @@ const MovieDetailsPage = () => {
   const location = useLocation();
 
   return (
-    <Container>
+    <ContainerMovie>
       <div>
         <Button onClick={() => navigate(location?.state?.from ?? '/')}>
           Go back
@@ -46,15 +45,15 @@ const MovieDetailsPage = () => {
           </Card>
           <Div>
             <h3>Additional information</h3>
-            <StyledLink to="cast">Cast</StyledLink>
-            <StyledLink to="reviews">Reviews</StyledLink>
+            <StyledLink to="cast" state={{ from: location.state.from }}>Cast</StyledLink>
+            <StyledLink to="reviews" state={{ from: location.state.from }}>Reviews</StyledLink>
           </Div>
           <Suspense fallback={<div>Loading subpage...</div>}>
             <Outlet />
           </Suspense>
         </>
       )}
-    </Container>
+    </ContainerMovie>
   );
 };
 

@@ -34,6 +34,7 @@ export async function fetchMovieByName(query) {
   return response.data.results;
 }
 
+
 export async function fetchMovieCast(id) {
   const response = await axios(`movie/${id}/credits`, {
     params: {

@@ -4,8 +4,8 @@ export const Navigation = () => {
     return(
         <Nav>
             <Ul>
-                <li><StyledLink to='/'>Home</StyledLink></li>
-                <li><StyledLink to='movies'>Movies</StyledLink></li>
+                <StyledLink to='/'>Home</StyledLink>
+                <StyledLink to='movies'>Movies</StyledLink>
             </Ul>
         </Nav>
     )

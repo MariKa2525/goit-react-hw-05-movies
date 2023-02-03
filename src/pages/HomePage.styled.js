@@ -14,6 +14,14 @@ margin-bottom: 10px;
 export const Title = styled.h1`
 color: black;
 font-size: 40px;
+margin-left: 40px;
+`
 
-
+export const Ul = styled.ul`
+color: black;
+margin: 40px;
+padding: 20px;
+display: flex;
+flex-direction: column;
+gap: 10px
 `

@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const ContainerMovie = styled.div`
+  max-width: 800px;
+  margin: 0;
+  padding: 20px;
+`;
 
 export const Button = styled.button`
 font-size: 15px;

@@ -7,7 +7,8 @@ border-radius: 4px;
 text-decoration: none;
 color: black;
 font-weight: 500;
-font-size: 25px;
+font-size: 35px;
+margin-left: 30px;
 
 &.active {
     color:  orangered;
@@ -15,7 +16,7 @@ font-size: 25px;
 `
 
 export const Nav = styled.nav`
-padding: 8px 0px;
+padding: 0;
 
 border-radius: 4px;
 color: black;

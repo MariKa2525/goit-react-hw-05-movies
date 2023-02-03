@@ -3,7 +3,7 @@ import { Suspense, useEffect } from 'react';
 import { useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import noFoto from '../../image/noFoto.jpg';
-import { Image } from './CastPage.styled';
+import { Image } from './Cast.styled';
 
 const CastPage = () => {
   const [movie, setMovie] = useState(null);

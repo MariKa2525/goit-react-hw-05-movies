@@ -2,7 +2,7 @@ import { fetchMovieReviews } from 'services/moviesApi';
 import { Suspense, useEffect } from 'react';
 import { useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
-import { Author } from './ReviewsPage.styled';
+import { Author } from './Reviews.styled';
 
 const ReviewsPage = () => {
   const [movie, setMovie] = useState(null);
