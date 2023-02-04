@@ -1,8 +1,16 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { useFetchMovie } from '../../hooks/useFetchMovie/useFetchMovie';
 import { useNavigate } from 'react-router-dom';
-import { Button, Card, ContainerMovie, Div, Wrap } from './MovieDetails.styled';
-import { StyledLink } from 'pages/HomePage.styled';
+import {
+  Button,
+  Card,
+  Div,
+  Subtitle,
+  TextMovie,
+  TitleMovie,
+  Wrap,
+} from './MovieDetails.styled';
+import { ContainerMovie, StyledLink } from 'pages/HomePage.styled';
 import { Suspense } from 'react';
 
 const MovieDetailsPage = () => {
@@ -24,19 +32,24 @@ const MovieDetailsPage = () => {
             <img
               src={`https://image.tmdb.org/t/p/w300${movie.poster_path} `}
               alt={movie.title}
-              width="280"
+              width="300"
             />
             <Wrap>
-              <h2>{movie.title}</h2>
-              <p>User Score: {Math.round(movie.popularity) + '%'}</p>
-              <h3>Overview</h3>
-              <p>{movie.overview}</p>
-              <h3>Genres</h3>
+              <TitleMovie>{movie.title}</TitleMovie>
+              <TextMovie>
+                {' '}
+                User Score: <span>
+                  {Math.round(movie.popularity) + '%'}
+                </span>{' '}
+              </TextMovie>
+              <Subtitle>Overview</Subtitle>
+              <TextMovie>{movie.overview}</TextMovie>
+              <Subtitle>Genres</Subtitle>
               <ul>
                 {movie.genres.map(name => {
                   return (
                     <li key={name.name}>
-                      <p>{name.name}</p>
+                      <TextMovie>{name.name}</TextMovie>
                     </li>
                   );
                 })}
@@ -44,9 +57,13 @@ const MovieDetailsPage = () => {
             </Wrap>
           </Card>
           <Div>
-            <h3>Additional information</h3>
-            <StyledLink to="cast" state={{ from: location.state.from }}>Cast</StyledLink>
-            <StyledLink to="reviews" state={{ from: location.state.from }}>Reviews</StyledLink>
+            <Subtitle>Additional information</Subtitle>
+            <StyledLink to="cast" state={{ from: location.state.from }}>
+              Cast
+            </StyledLink>
+            <StyledLink to="reviews" state={{ from: location.state.from }}>
+              Reviews
+            </StyledLink>
           </Div>
           <Suspense fallback={<div>Loading subpage...</div>}>
             <Outlet />

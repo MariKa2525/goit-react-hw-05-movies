@@ -1,19 +1,22 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 8px 0;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #ececec;
-  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
-  border-radius: 0px 0px 4px 4px;
+width: 100%;
+padding: 2px 0;
+font-size: 14px;
+background-color: #111;
+box-sizing: border-box;
+color: #fff;
+font-weight: normal;
   
   > nav {
     display: flex;
   }
-
-  
 `;
+
+export const ContainerHeader = styled.div`
+    max-width: 1800px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+`

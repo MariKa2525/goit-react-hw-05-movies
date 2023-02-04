@@ -2,8 +2,9 @@ import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMovieByName } from '../../services/moviesApi';
 import { Suspense, useEffect } from 'react';
 import { useState } from 'react';
-import { StyledLink } from 'pages/HomePage.styled';
+import { ContainerMovie, StyledLink, Ul } from 'pages/HomePage.styled';
 import { Btn, Input } from './MoviesPage.styled';
+import { Text } from 'components/Reviews/Reviews.styled';
 
 const MoviesPage = () => {
   const [moviesSearchByWord, setMoviesSearchByWord] = useState([]);
@@ -34,31 +35,35 @@ const MoviesPage = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <Input type="text" name="movieName" onChange={handleChangeCheck} />
-        <Btn type="submit" disabled={!check}>
-          Search
-        </Btn>
-      </form>
-      {moviesSearchByWord.length > 0 && (
-        <>
-          <ul>
-            {moviesSearchByWord.map(({ title, id }) => (
-              <li key={id}>
-                <StyledLink to={`/movies/${id}`} state={{ from: location }}>
-                  {title}
-                </StyledLink>
-              </li>
-            ))}
-          </ul>
-          <Suspense fallback={<div>Loading subpage...</div>}>
-            <Outlet />
-          </Suspense>
-        </>
-      )}
-      {moviesSearchByWord.length === 0 && movieName !== null && (
-        <p>Sorry no movie</p>
-      )}
+      <main>
+        <ContainerMovie>
+          <form onSubmit={handleSubmit}>
+            <Input type="text" name="movieName" onChange={handleChangeCheck} />
+            <Btn type="submit" disabled={!check}>
+              Search
+            </Btn>
+          </form>
+          {moviesSearchByWord.length > 0 && (
+            <>
+              <Ul>
+                {moviesSearchByWord.map(({ title, id }) => (
+                  <li key={id}>
+                    <StyledLink to={`/movies/${id}`} state={{ from: location }}>
+                      {title}
+                    </StyledLink>
+                  </li>
+                ))}
+              </Ul>
+              <Suspense fallback={<div>Loading subpage...</div>}>
+                <Outlet />
+              </Suspense>
+            </>
+          )}
+          {moviesSearchByWord.length === 0 && movieName !== null && (
+            <Text>Sorry no movie</Text>
+          )}
+        </ContainerMovie>
+      </main>
     </>
   );
 };

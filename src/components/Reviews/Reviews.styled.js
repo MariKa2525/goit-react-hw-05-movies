@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Author = styled.p`
-font-size: 20px;
-font-weight: 600;
-`
+export const Text = styled.p`
+  font-size: 30px;
+  font-weight: 600;
+`;

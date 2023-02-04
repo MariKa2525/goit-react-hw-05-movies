@@ -5,10 +5,13 @@ export const StyledLink = styled(NavLink)`
 padding: 8px 8px;
 border-radius: 4px;
 text-decoration: none;
-color: black;
+color: white;
 font-weight: 500;
 font-size: 35px;
 margin-left: 30px;
+font-weight: bold;
+text-transform: uppercase;
+padding-top: 30px;
 
 &.active {
     color:  orangered;

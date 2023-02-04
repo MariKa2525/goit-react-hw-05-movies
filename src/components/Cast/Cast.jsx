@@ -3,7 +3,8 @@ import { Suspense, useEffect } from 'react';
 import { useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import noFoto from '../../image/noFoto.jpg';
-import { Image } from './Cast.styled';
+import { CastCard, CastList, CastSubtitle, Image } from './Cast.styled';
+import { Text } from 'components/Reviews/Reviews.styled';
 
 const CastPage = () => {
   const [movie, setMovie] = useState(null);
@@ -17,9 +18,9 @@ const CastPage = () => {
     <>
       {movie !== null && movie.cast.length > 0 ? (
         <>
-          <ul>
+          <CastList>
             {movie.cast.map(({ id, profile_path, name, character }) => (
-              <li key={id}>
+              <CastCard key={id}>
                 <Image
                   src={
                     profile_path
@@ -30,17 +31,17 @@ const CastPage = () => {
                   width="150"
                 />
 
-                <p>{name}</p>
-                <p>Character: {character}</p>
-              </li>
+                <CastSubtitle>{name}</CastSubtitle>
+                <CastSubtitle>Character: {character} </CastSubtitle>
+              </CastCard>
             ))}
-          </ul>
+          </CastList>
           <Suspense fallback={<div>Loading subpage...</div>}>
             <Outlet />
           </Suspense>
         </>
       ) : (
-        <p>We don`t have iformation about cast of this movie.</p>
+        <Text>We don`t have iformation about cast of this movie.</Text>
       )}
     </>
   );
